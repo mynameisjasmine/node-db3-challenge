@@ -21,9 +21,23 @@ return db('schemes')
 }
 
 function findSteps(id) {
-return db('steps')
-.orderBy()
-}
+// return db('steps')
+// .select("steps.id", "scheme.scheme_name", "steps.step_number", "steps.instructions")
+// .join("schemes", "steps.scheme_id", "schemes.id")
+// .where({id})
+// .orderBy("steps.step_number","asc")
+  return db('schemes')
+    .select('schemes.id',
+            'schemes.scheme_name',
+            'steps.step_number',
+            'steps.instructions'
+    )
+    // .from('schemes')
+    .join('steps', 'schemes.id', 'steps.scheme_id')
+    .where({ scheme_id: id })
+    .orderBy('step_number');
+ }
+
 
 function add(scheme) {
 return db('schemes')
