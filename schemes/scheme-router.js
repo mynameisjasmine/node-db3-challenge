@@ -30,6 +30,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
+//GET Steps
 router.get('/:id/steps', (req, res) => {
   const { id } = req.params;
 
